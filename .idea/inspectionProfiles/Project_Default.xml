@@ -1,0 +1,37 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyChainedComparisonsInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoreConstantInTheMiddle" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E731" />
+          <option value="E128" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="PySide6.QtWidgets.clicked.connect" />
+          <option value="PySide6.QtWidgets.valueChanged.connect" />
+          <option value="mainWindow.DayAheadButton.clicked" />
+          <option value="PySide6.QtGui.triggered.connect" />
+          <option value="PySide6.QtCharts.hovered.connect" />
+          <option value="PySide6.QtCharts.clicked.connect" />
+          <option value="PySide6.QtWidgets.sliderPressed.connect" />
+          <option value="PySide6.QtWidgets.sliderMoved.connect" />
+          <option value="PySide6.QtWidgets.sliderReleased.connect" />
+          <option value="PySide6.QtCharts.pressed.connect" />
+          <option value="PySide6.QtCharts.released.connect" />
+          <option value="tableWindow.EditableTable.cellChanged" />
+          <option value="PySide6.QtGui.activated.connect" />
+          <option value="utility.DateSpin.valueChanged" />
+          <option value="PySide6.QtWidgets.currentIndexChanged.connect" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
