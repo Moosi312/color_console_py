@@ -1,3 +1,5 @@
+import numbers
+
 class Color:
     black = 0
     red = 1
@@ -8,13 +10,47 @@ class Color:
     brown = 6
     white = 7
 
-    def __init__(self, name=None, style=None, col=None, back=None):
-        formats = [None, None, None]
-        if name is not None:
-            if name == "error":
-                style, col, back = [1, Color.red, Color.black]
-            elif name == "success":
-                style, col, back = [1, Color.green, None]
+    color_dict = {
+        "black": 0,
+        "red": 1,
+        "green": 2,
+        "yellow": 3,
+        "blue": 4,
+        "pink": 5,
+        "brown": 6,
+        "white": 7
+    }
+
+    named_colors = {
+        "error": [1, red, black],
+        "success": [1, green, None]
+    }
+
+    def __init__(self, style=None, col=None, back=None, name=None):
+        formats = self.named_colors.get(name, [None, None, None])
+
+        if not isinstance(style, numbers.Integral):
+            style = int(style)
+        if not 0 <= style < 8:
+            style = None
+            print("\x1b[31mStyle has to be between 0 and 7. Value will be ignored")
+
+        if isinstance(col, str):
+            col = self.color_dict.get(col, None)
+        elif not isinstance(col, numbers.Integral):
+            col = int(col)
+        if not 0 <= col < 8:
+            col = None
+            print("\x1b[31mColor has to be between 0 and 7. Value will be ignored")
+
+        if isinstance(back, str):
+            back = self.color_dict.get(back, None)
+        elif not isinstance(back, numbers.Integral):
+            back = int(back)
+        if not 0 <= back < 8:
+            back = None
+            print("\x1b[31mBackground has to be between 0 and 7. Value will be ignored")
+
         if style is not None and int(style) in range(8):
             formats[0] = str(style)
         if col is not None:
@@ -29,3 +65,7 @@ class Color:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         print("\x1b[0m", end='')
+
+
+with Color(1, 7, 7):
+    print("Testing")
