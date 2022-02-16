@@ -1,5 +1,6 @@
 import numbers
 
+
 class Color:
     black = 0
     red = 1
@@ -23,8 +24,12 @@ class Color:
 
     named_colors = {
         "error": [1, red, black],
-        "success": [1, green, None]
+        "success": [1, green, None],
+        "warning": [1, green, None],
+        "info": [1, blue, None]
     }
+
+    _end_string = "\x1b[0m"
 
     def __init__(self, style=None, col=None, back=None, name=None):
         formats = self.named_colors.get(name, [None, None, None])
@@ -58,13 +63,19 @@ class Color:
         if back is not None:
             formats[2] = f"4{back}"
 
-        self.color_string = f"\x1b[{';'.join([f for f in formats if f is not None])}m"
+        self._color_string = f"\x1b[{';'.join([f for f in formats if f is not None])}m"
+
+    def start(self):
+        return self._color_string
+
+    def stop(self):
+        return self._end_string
 
     def __enter__(self):
-        print(self.color_string, end='')
+        print(self._color_string, end='')
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("\x1b[0m", end='')
+        print(self._end_string, end='')
 
 
 with Color(1, 7, 7):
