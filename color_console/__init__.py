@@ -80,6 +80,5 @@ class Color:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.out.write(self._end_string)
 
-
-with Color(1, 7, 7):
-    print("Testing")
+    def __getattr__(self, item):
+        return Color(name=item)
