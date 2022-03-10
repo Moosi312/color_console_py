@@ -38,26 +38,44 @@ class Color:
         formats = self.named_colors.get(name, [None, None, None])
 
         if not isinstance(style, numbers.Integral):
-            style = int(style)
-        if not 0 <= style < 8:
-            style = None
-            print("\x1b[31mStyle has to be between 0 and 7. Value will be ignored")
+            try:
+                style = int(style)
+            except TypeError:
+                if error:
+                    print("\x1b[31mStyle has to be integer\x1b[0m")
+            else:
+                if not 0 <= style < 8:
+                    style = None
+                    if error:
+                        print("\x1b[31mStyle has to be between 0 and 7. Value will be ignored\x1b[0m")
 
         if isinstance(col, str):
             col = self.color_dict.get(col, None)
-        elif not isinstance(col, numbers.Integral):
-            col = int(col)
-        if not 0 <= col < 8:
-            col = None
-            print("\x1b[31mColor has to be between 0 and 7. Value will be ignored")
+        if not isinstance(col, numbers.Integral):
+            try:
+                col = int(col)
+            except TypeError:
+                if error:
+                    print("\x1b[31mColor has to be integer or named color\x1b[0m")
+            else:
+                if not 0 <= col < 8:
+                    col = None
+                    if error:
+                        print("\x1b[31mColor has to be between 0 and 7. Value will be ignored\x1b[0m")
 
         if isinstance(back, str):
             back = self.color_dict.get(back, None)
-        elif not isinstance(back, numbers.Integral):
-            back = int(back)
-        if not 0 <= back < 8:
-            back = None
-            print("\x1b[31mBackground has to be between 0 and 7. Value will be ignored")
+        if not isinstance(back, numbers.Integral):
+            try:
+                back = int(back)
+            except TypeError:
+                if error:
+                    print("\x1b[31mBackground has to be integer or named color\x1b[0m")
+            else:
+                if not 0 <= back < 8:
+                    back = None
+                    if error:
+                        print("\x1b[31mBackground has to be between 0 and 7. Value will be ignored\x1b[0m")
 
         if style is not None and int(style) in range(8):
             formats[0] = str(style)
