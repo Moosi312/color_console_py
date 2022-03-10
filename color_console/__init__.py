@@ -12,21 +12,22 @@ class Color:
     white = 7
 
     color_dict = {
-        "black": 0,
-        "red": 1,
-        "green": 2,
-        "yellow": 3,
-        "blue": 4,
-        "pink": 5,
-        "brown": 6,
-        "white": 7
+        "black": black,
+        "red": red,
+        "green": green,
+        "yellow": yellow,
+        "blue": blue,
+        "pink": pink,
+        "brown": brown,
+        "white": white
     }
 
     named_colors = {
         "error": [1, red, black],
         "success": [1, green, None],
-        "warning": [1, green, None],
-        "info": [1, blue, None]
+        "warning": [1, yellow, None],
+        "info": [1, blue, None],
+        "default": [None, None, None]
     }
 
     _end_string = "\x1b[0m"
