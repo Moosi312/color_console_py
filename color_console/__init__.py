@@ -1,3 +1,4 @@
+import sys
 import numbers
 
 
@@ -32,7 +33,8 @@ class Color:
 
     _end_string = "\x1b[0m"
 
-    def __init__(self, style=None, col=None, back=None, name=None):
+    def __init__(self, style=None, col=None, back=None, name=None, out=sys.stdout, error=True):
+        self.out = out
         formats = self.named_colors.get(name, [None, None, None])
 
         if not isinstance(style, numbers.Integral):
@@ -73,10 +75,10 @@ class Color:
         return self._end_string
 
     def __enter__(self):
-        print(self._color_string, end='')
+        self.out.write(self._color_string)
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print(self._end_string, end='')
+        self.out.write(self._end_string)
 
 
 with Color(1, 7, 7):
