@@ -77,6 +77,13 @@ class Color:
     def stop(self):
         return self._end_string
 
+    def __str__(self):
+        return self._color_string
+
+    def __repr__(self):
+        return f"<{self.__class__.__name__}({self._color_string[2:-1]})" \
+               f"[{self._color_string}{self._color_string[2:-1]}{self._end_string}]>"
+
     def __enter__(self):
         self.out.write(self._color_string)
 
