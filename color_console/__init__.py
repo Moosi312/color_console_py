@@ -1,5 +1,8 @@
 import sys
 import numbers
+import typing
+
+color_arg = typing.Union[int, str]
 
 
 class Color:
@@ -25,66 +28,48 @@ class Color:
 
     named_colors = {
         "error": [1, red, black],
+        "err": [1, red, black],
         "success": [1, green, None],
+        "succ": [1, green, None],
         "warning": [1, yellow, None],
+        "warn": [1, yellow, None],
         "info": [1, blue, None],
         "default": [None, None, None]
     }
 
     _end_string = "\x1b[0m"
+    end = _end_string
 
-    def __init__(self, style=None, col=None, back=None, name=None, out=sys.stdout, error=True):
+    def __init__(self, style: numbers.Integral = None, color: color_arg = None, background: color_arg = None,
+                 name: str = None, out: typing.IO = sys.stdout):
         self.out = out
-        formats = self.named_colors.get(name, [None, None, None])
+        formats = []
+        self.style, self.col, self.back = self.named_colors.get(name, [None, None, None])
 
-        if not isinstance(style, numbers.Integral):
-            try:
-                style = int(style)
-            except TypeError:
-                if error:
-                    print("\x1b[31mStyle has to be integer\x1b[0m")
-            else:
-                if not 0 <= style < 8:
-                    style = None
-                    if error:
-                        print("\x1b[31mStyle has to be between 0 and 7. Value will be ignored\x1b[0m")
+        if isinstance(style, numbers.Integral):
+            if 0 <= style < 8:
+                self.style = style
 
-        if isinstance(col, str):
-            col = self.color_dict.get(col, None)
-        if not isinstance(col, numbers.Integral):
-            try:
-                col = int(col)
-            except TypeError:
-                if error:
-                    print("\x1b[31mColor has to be integer or named color\x1b[0m")
-            else:
-                if not 0 <= col < 8:
-                    col = None
-                    if error:
-                        print("\x1b[31mColor has to be between 0 and 7. Value will be ignored\x1b[0m")
+        if isinstance(color, numbers.Integral):
+            if 0 <= color < 8:
+                self.col = color
+        elif isinstance(color, str):
+            self.col = self.color_dict.get(color, None)
 
-        if isinstance(back, str):
-            back = self.color_dict.get(back, None)
-        if not isinstance(back, numbers.Integral):
-            try:
-                back = int(back)
-            except TypeError:
-                if error:
-                    print("\x1b[31mBackground has to be integer or named color\x1b[0m")
-            else:
-                if not 0 <= back < 8:
-                    back = None
-                    if error:
-                        print("\x1b[31mBackground has to be between 0 and 7. Value will be ignored\x1b[0m")
+        if isinstance(background, numbers.Integral):
+            if 0 <= background < 8:
+                self.back = background
+        elif isinstance(background, str):
+            self.back = self.color_dict.get(background, None)
 
-        if style is not None and int(style) in range(8):
-            formats[0] = str(style)
-        if col is not None:
-            formats[1] = f"3{col}"
-        if back is not None:
-            formats[2] = f"4{back}"
+        if self.style is not None:
+            formats.append(str(self.style))
+        if self.col is not None:
+            formats.append(f"3{self.col}")
+        if self.back is not None:
+            formats.append(f"4{self.back}")
 
-        self._color_string = f"\x1b[{';'.join([f for f in formats if f is not None])}m"
+        self._color_string = f"\x1b[{';'.join(formats)}m"
 
     def start(self):
         return self._color_string
