@@ -91,4 +91,13 @@ class Color:
         self.out.write(self._end_string)
 
     def __getattr__(self, item):
-        return Color(name=item)
+        pass
+
+
+# Color.error = Color(name="error")
+for col in Color.named_colors:
+    setattr(Color, col, Color(name=col))
+# for name, col in Color.named_colors.items():
+#     # Color.__setattr__(name, Color(*col))
+#     print(col)
+#     Color.__dict__[name] = Color(*col)
