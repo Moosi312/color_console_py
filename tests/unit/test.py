@@ -1,4 +1,4 @@
-from color_console import Color
+from src.color_console import Color
 import unittest
 
 
