@@ -95,36 +95,36 @@ Third number(40-47): Background color
 
 ## Style 0
 
-![style 0](readme_img/style0.png)
+![style 0](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style0.png)
 
 ## Style 1
 
-![style 1](readme_img/style1.png)
+![style 1](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style1.png)
 
 ## Style 2
 
-![style 2](readme_img/style2.png)
+![style 2](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style2.png)
 
 ## Style 3
 
-![style 3](readme_img/style3.png)
+![style 3](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style3.png)
 
 ## Style 4
 
-![style 4](readme_img/style4.png)
+![style 4](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style4.png)
 
 ## Style 5
 
-![style 5](readme_img/style5.png)
+![style 5](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style5.png)
 
 ## Style 6
 
-![style 6](readme_img/style6.png)
+![style 6](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style6.png)
 
 ## Style 7
 
-![style 7](readme_img/style7.png)
+![style 7](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/style7.png)
 
 ## Misc
 
-![misc](readme_img/seperate.png)
+![misc](https://raw.githubusercontent.com/Moosi312/color_console_py/main/readme_img/seperate.png)
