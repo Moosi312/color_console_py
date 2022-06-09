@@ -25,4 +25,4 @@ jobs:
 
       - name: Demonstrate
         run: |
-          python tests/demonstration.py
+          python -m tests/demonstration.py
