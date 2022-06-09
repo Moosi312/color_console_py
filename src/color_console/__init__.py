@@ -1,1 +1,1 @@
-from src.color_console.color_console import Color
+from .color_console import Color
